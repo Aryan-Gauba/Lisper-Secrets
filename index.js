@@ -4,6 +4,20 @@
 import express from "express";
 import axios from "axios";
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Recreate __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ... your app = express() setup ...
+
+// Use the absolute paths
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
+
 // 2. Create an express app and set the port number.
 
 const app = express();
@@ -13,7 +27,6 @@ const API_URL = "https://secrets-api.appbrewery.com/random";
 
 // 3. Use the public folder for static files.
 
-app.use(express.static("public"));
 
 // 4. When the user goes to the home page it should render the index.ejs file.
 
@@ -38,3 +51,5 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+export default app;

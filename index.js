@@ -7,6 +7,10 @@ import axios from "axios";
 import path from "path";
 import { fileURLToPath } from "url";
 
+const app = express();
+const port = 3000;
+const API_URL = "https://secrets-api.appbrewery.com/random";
+
 // Recreate __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,9 +24,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // 2. Create an express app and set the port number.
 
-const app = express();
-const port = 3000;
-const API_URL = "https://secrets-api.appbrewery.com/random";
 
 
 // 3. Use the public folder for static files.
